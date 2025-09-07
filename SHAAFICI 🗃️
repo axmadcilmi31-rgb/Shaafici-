@@ -1,0 +1,66 @@
+import random
+import os
+
+def number_guess():
+    number = random.randint(1, 50)
+    attempts = 0
+    print("\n🎮 Number Guessing Game (1-50)")
+    while True:
+        try:
+            guess = int(input("🔢 Guess: "))
+            attempts += 1
+            if guess < number:
+                print("📉 Too low!")
+            elif guess > number:
+                print("📈 Too high!")
+            else:
+                print(f"🎉 Correct! You did it in {attempts} attempts.")
+                break
+        except:
+            print("❌ Please enter a number.")
+
+def rock_paper_scissors():
+    choices = ["✊ Rock", "✋ Paper", "✌️ Scissors"]
+    print("\n🎮 Rock-Paper-Scissors Game")
+    while True:
+        user = input("Choose: (1) Rock (2) Paper (3) Scissors (4) Exit: ")
+        if user == "4":
+            break
+        if user not in ["1", "2", "3"]:
+            print("❌ Invalid choice.")
+            continue
+        user_choice = choices[int(user)-1]
+        comp_choice = random.choice(choices)
+        print(f"🤖 Computer chose: {comp_choice}")
+        if user_choice == comp_choice:
+            print("🟰 Draw!")
+        elif (user_choice == "✊ Rock" and comp_choice == "✌️ Scissors") or \
+             (user_choice == "✋ Paper" and comp_choice == "✊ Rock") or \
+             (user_choice == "✌️ Scissors" and comp_choice == "✋ Paper"):
+            print("✅ You win!")
+        else:
+            print("❌ Computer wins!")
+
+def main():
+    while True:
+        os.system("clear")
+        print("="*40)
+        print("          🎮 MY GAME HUB          ")
+        print("="*40)
+        print("1. Number Guessing Game")
+        print("2. Rock-Paper-Scissors")
+        print("3. Exit")
+        choice = input("Select game (1-3): ")
+        if choice == "1":
+            number_guess()
+        elif choice == "2":
+            rock_paper_scissors()
+        elif choice == "3":
+            print("👋 Goodbye!")
+            break
+        else:
+            print("❌ Invalid choice.")
+        input("\n📌 Press Enter to continue...")
+
+if __name__ == "__main__":
+    main()
